@@ -618,7 +618,7 @@ div, p, span, a {
   margin: auto;
 }
 .products__item__content img {
-  height: 12vh;
+  height: 8vh;
 }
 .products .fish {
   cursor: move;

@@ -39,6 +39,12 @@ function assignDragging() {
 		fish.addEventListener("dragend", () => {
 			fish.classList.remove("dragging");
 		});
+		fish.addEventListener("touchstart", () => {
+			fish.classList.add("dragging");
+		});
+		fish.addEventListener("touchend", () => {
+			fish.classList.remove("dragging");
+		});
 	})
 }
 
@@ -46,6 +52,15 @@ function assignDragging() {
 function addToScale() {
 	const scale = document.querySelector(".scale__space");
 	scale.addEventListener("dragover", (e) => {
+		e.preventDefault();
+		let draggedFish = document.querySelector(".dragging");
+		scale.appendChild(draggedFish);
+		updatePrice();
+		updateSize();
+		addRemoveBtn();
+	});
+
+	scale.addEventListener("touchmove", (e) => {
 		e.preventDefault();
 		let draggedFish = document.querySelector(".dragging");
 		scale.appendChild(draggedFish);
@@ -61,6 +76,16 @@ function removeFromScale() {
 	const fishesItemContent = document.querySelectorAll(".products__item__content");
 	fishesItemContent.forEach((content) => {
 		content.addEventListener("dragover", (e) => {
+			e.preventDefault();
+			let draggedFish = document.querySelector(".dragging");
+			if (content.dataset.id == draggedFish.id) {
+				content.appendChild(draggedFish);
+			}
+			updatePrice();
+			updateSize();
+		});
+
+		content.addEventListener("touchmove", (e) => {
 			e.preventDefault();
 			let draggedFish = document.querySelector(".dragging");
 			if (content.dataset.id == draggedFish.id) {
