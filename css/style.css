@@ -619,7 +619,6 @@ div, p, span, a {
 }
 .products__item__content img {
   height: 12vh;
-  max-width: 6.25rem;
 }
 .products .fish {
   cursor: move;
