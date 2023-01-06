@@ -618,7 +618,7 @@ div, p, span, a {
   margin: auto;
 }
 .products__item__content img {
-  width: 10vw;
+  height: 12vh;
   max-width: 6.25rem;
 }
 .products .fish {
