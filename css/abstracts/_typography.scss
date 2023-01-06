@@ -1,0 +1,39 @@
+// THIN - 100
+@include font-face('Poppins Thin', Poppins-Thin);
+@include font-face('Poppins Thin Italic', Poppins-ThinItalic);
+
+// REGULAR - 400
+@include font-face('Poppins', Poppins-Regular);
+@include font-face('Poppins Italic', Poppins-Italic);
+
+// BOLD - 700
+@include font-face('Poppins Bold', Poppins-Bold);
+@include font-face('Poppins Bold Italic', Poppins-BoldItalic);
+
+*, html, :root {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-smooth: always;
+  text-rendering: optimizeLegibility;
+}
+
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6, 
+.h1,
+.h2, 
+.h3,
+.h4, 
+.h5, 
+.h6{
+  font-weight: 700;
+  margin: unset;
+}
+
+div, p, span, a {
+  font-weight: 400;
+  margin: unset;
+}

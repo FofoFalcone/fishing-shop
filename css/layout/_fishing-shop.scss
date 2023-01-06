@@ -1,0 +1,43 @@
+.container-grid {
+  margin: auto auto;
+  border-radius: calculate-rem(16px);
+  @include css3-prefix(box-shadow, 0px 0px 10px -2px rgba(0,0,0,0.5));
+}
+
+#fishing-shop {
+  display: grid; 
+  gap: 0px 0px; 
+  width: 100vw;
+  height: 100vh;
+  max-width: 90vw;
+  max-height: calc(100vh - 5rem);
+  @include orientation(portrait) {
+    grid-template-rows: 26.6666666667% 46.6666666667% 26.6666666667%;
+    grid-template-areas: 
+    "welcome"
+    "scale"
+    "products";
+  }
+  @include orientation(landscape) {
+    grid-template-columns: 38.4615384615% 61.5384615385%; 
+    grid-template-rows: 60% 40%;
+    grid-template-areas: 
+    "welcome scale"
+    "products products"; 
+  }
+  @include breakpoint(desktop) {
+    max-width: calculate-rem(1024px); 
+  }
+
+  .welcome {
+    grid-area: welcome;
+  }
+
+  .scale {
+    grid-area: scale;
+  }
+
+  .products {
+    grid-area: products;
+  }
+}

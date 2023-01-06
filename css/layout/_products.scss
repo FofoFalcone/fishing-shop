@@ -1,0 +1,35 @@
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  background-color: $turquoise;
+  border-bottom-left-radius: calculate-rem(16px);
+  border-bottom-right-radius: calculate-rem(16px);
+
+  &__item {
+    flex: 0 1 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__item__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $white;
+    width: 90%;
+    height: get-vh(80px);
+    border-radius: calculate-rem(40px);
+    margin: auto;
+  }
+
+  &__item__content img {
+    width: 10vw;
+    max-width: calculate-rem(100px);
+  }
+
+  .fish {
+    cursor: move;
+  }
+}

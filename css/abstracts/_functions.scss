@@ -1,0 +1,17 @@
+// FROM PIXELS TO REM
+@function calculate-rem($size) {
+  $rem-size: calc($size / 16px);
+  @return $rem-size * 1rem;
+}
+
+// GET VW SIZE FROM PIXELS
+@function get-vw($target) { 
+  $vw-context: (1000*.01) * 1px;
+  @return (calc($target/$vw-context)) * 1vw;
+}
+
+// GET VH SIZE FROM PIXELS
+@function get-vh($target) { 
+  $vh-context: (1000*.01) * 1px;
+  @return (calc($target/$vh-context)) * 1vh;
+}

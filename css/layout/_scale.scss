@@ -1,0 +1,117 @@
+.scale {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: $lightgrey;
+  padding: calculate-rem(40px) calculate-rem(20px);
+  overflow: hidden;
+  @include orientation(landscape) {
+    border-top-right-radius: calculate-rem(16px);
+    padding: calculate-rem(50px);
+  }
+
+  &__counter {
+    @include abs-position(calculate-rem(-18px), 0, unset, 0);
+    width: 33.33%;
+    margin: auto;
+    height: calculate-rem(30px);
+    border-radius: calculate-rem(15px);
+    background-color: $white;
+  }
+
+  &__total {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    width: 100%;
+    height: 100%;
+    &::after {
+      content: '';
+      width: calculate-rem(16px);
+      height: calculate-rem(16px);
+      background-image: url('../assets/images/coin.png');
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-bottom: calculate-rem(2px);
+      margin-left: calculate-rem(2px);
+    }
+  }
+
+  &__plate {
+    position: relative;
+    display: flex;
+    flex: 1 100%;
+    border: calculate-rem(5px) dashed $darkgrey;
+    width: 100%;
+    height: calculate-rem(100px);
+    padding: calculate-rem(20px) 0;
+  }
+
+  &__space {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    .remove {
+      display: none;
+      cursor: pointer;
+      content: "\00d7";
+      pointer-events: all;
+      position: absolute;
+      width: calculate-rem(14px);
+      height: calculate-rem(14px);
+      border-radius: 50%;
+      background-color: $red;
+      top: 0;
+      right: calculate-rem(10px);
+      &:before, 
+      &:after {
+        position: absolute;
+        top: calculate-rem(7px);
+        left: calculate-rem(7px);
+        width: calculate-rem(2px);
+        height: calculate-rem(10px);
+        background-color: #F0F0F0;
+        transform: rotate(45deg) translate(-50%, -50%);
+        transform-origin: top left;
+        content: '';
+      }
+      &:after {
+        transform: rotate(-45deg) translate(-50%, -50%);
+      }
+    }
+
+    .fish {
+      position: relative;
+      flex: 0 1 25%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: min-content;
+      &:hover .remove {
+        display: block;
+      }
+      img {
+        height: 10vh;
+      }
+    }
+  }
+
+  &__pointer {
+    img {
+      max-width: calculate-rem(50px);
+    }
+  }
+
+  &__size {
+    color: $darkgrey;
+    span {
+      @include font-size(24px);
+      font-weight: 700;
+    }
+  }
+}
