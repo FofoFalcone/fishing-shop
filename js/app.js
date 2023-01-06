@@ -103,7 +103,7 @@ function updatePrice() {
 	const totalCounter = document.querySelector('.scale__total');
 	const scaleProducts = document.querySelectorAll(".scale__space .fish");
 	scaleProducts.forEach((product) => {
-		let productPrice = product.dataset.price;
+		let productPrice = product.dataset.price * product.dataset.size;
 		totalPrice += Number(productPrice);
 	})
 	totalCounter.innerHTML = totalPrice;
