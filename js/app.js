@@ -87,7 +87,6 @@ function setTouchListeners() {
 				e.preventDefault();
 				[...e.changedTouches].forEach((touch) => {
 					let currentContainer = fish.parentElement;
-					console.log(currentContainer);
 					let draggedFish = document.querySelector('.dragging');
 					if (draggedFish) {
 						draggedFish.style.zIndex = -1;
