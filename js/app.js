@@ -88,20 +88,20 @@ function setTouchListeners() {
 				[...e.changedTouches].forEach((touch) => {
 					let currentContainer = fish.parentElement;
 					console.log(currentContainer);
-					let hoveredElement = document.elementFromPoint(touch.clientX, touch.clientY);
 					let draggedFish = document.querySelector('.dragging');
 					if (draggedFish) {
 						draggedFish.style.zIndex = -1;
 					}
+					let hoveredElement = document.elementFromPoint(touch.clientX, touch.clientY);
 					if (hoveredElement.classList.contains('scale__space') || hoveredElement.dataset.id == fish.id ) {
-						hoveredElement.appendChild(draggedFish);
-						touchendUpdate(draggedFish);
-					} else if (hoveredElement.tagName == 'IMG') {
-						hoveredElement.parentElement.parentElement.appendChild(draggedFish);
-						touchendUpdate(draggedFish);
+						hoveredElement.appendChild(fish);
+						touchendUpdate(fish);
+					} else if (hoveredElement.tagName == 'IMG' || hoveredElement.classList.contains('fish')) {
+						hoveredElement.closest('.scale__space').insertAdjacentElement("beforeend", fish);
+						touchendUpdate(fish);
 					} else {
-						currentContainer.appendChild(draggedFish);
-						touchendUpdate(draggedFish);
+						currentContainer.appendChild(fish);
+						touchendUpdate(fish);
 					}
 				})
 			});
