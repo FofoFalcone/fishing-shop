@@ -91,8 +91,12 @@ function setTouchListeners() {
 					let draggedFish = document.querySelector('.dragging');
 					draggedFish.style.zIndex = -1;
 					let hoveredElement = document.elementFromPoint(touch.clientX, touch.clientY);
+					console.log(hoveredElement);
 					if (hoveredElement.classList.contains('scale__space') || hoveredElement.dataset.id == fish.id ) {
 						hoveredElement.appendChild(draggedFish);
+						touchendUpdate(draggedFish);
+					} else if (hoveredElement.tagName == 'IMG') {
+						hoveredElement.parentElement.parentElement.appendChild(draggedFish);
 						touchendUpdate(draggedFish);
 					} else {
 						currentContainer.appendChild(draggedFish);
