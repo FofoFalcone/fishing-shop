@@ -147,7 +147,7 @@ function setRemoveFromScaleTo(fishesItemContent) {
 		}
 	});
 
-	scale.addEventListener('touchstart', (e) => {
+	scale.addEventListener('touchend', (e) => {
 		console.log(e.target);
 		if (e.target.classList.contains('remove')) {
 			const fishOnScale = e.target.parentElement;
