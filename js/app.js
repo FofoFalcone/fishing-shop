@@ -15,6 +15,7 @@ function generateFishingShop(dataJson) {
 					<img src="assets/images/fish/${data.name}.png" alt="" />
 				</div>
 			</div>
+			<div class="fish__name">${data.name.charAt(0).toUpperCase() + data.name.slice(1).replace(/-/g, ' ')}</div>
 		</div>`
 		fishesSection.insertAdjacentHTML("beforeend", dataTemplate);
 	});
