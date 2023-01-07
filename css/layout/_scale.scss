@@ -96,7 +96,10 @@
         display: block;
       }
       img {
-        height: 10vh;
+        height: 7vh;
+        @include breakpoint(tablet) {
+          height: 10vh;
+        }
       }
     }
   }

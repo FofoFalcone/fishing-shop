@@ -580,7 +580,12 @@ div, p, span, a {
   display: block;
 }
 .scale__space .fish img {
-  height: 10vh;
+  height: 7vh;
+}
+@media only screen and (min-width: 600px) {
+  .scale__space .fish img {
+    height: 10vh;
+  }
 }
 .scale__pointer img {
   max-width: 3.125rem;
