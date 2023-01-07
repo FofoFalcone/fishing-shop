@@ -545,8 +545,8 @@ div, p, span, a {
   content: "×";
   pointer-events: all;
   position: absolute;
-  width: 0.875rem;
-  height: 0.875rem;
+  width: 1.125rem;
+  height: 1.125rem;
   border-radius: 50%;
   background-color: rgb(197, 64, 57);
   top: 0;
@@ -559,8 +559,8 @@ div, p, span, a {
 }
 .scale__space .remove:before, .scale__space .remove:after {
   position: absolute;
-  top: 0.4375rem;
-  left: 0.4375rem;
+  top: 0.5625rem;
+  left: 0.5625rem;
   width: 0.125rem;
   height: 0.625rem;
   background-color: #F0F0F0;

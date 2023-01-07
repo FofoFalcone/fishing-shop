@@ -67,6 +67,7 @@ function setTouchListeners() {
 		if(!fish.classList.add('listening')) {
 			fish.classList.add('listening');
 			fish.addEventListener("touchstart", (e) => {
+				e.preventDefault();
 				[...e.changedTouches].forEach((touch) => {
 					fish.classList.add("dragging");
 					fish.style.position = "absolute";
@@ -75,6 +76,7 @@ function setTouchListeners() {
 				})
 			});
 			fish.addEventListener("touchmove", (e) => {
+				e.preventDefault();
 				[...e.changedTouches].forEach((touch) => {
 					fish.style.top = `${touch.pageY}px`;
 					fish.style.left = `${touch.pageX}px`;
@@ -82,6 +84,7 @@ function setTouchListeners() {
 				})
 			});
 			fish.addEventListener("touchend", (e) => {
+				e.preventDefault();
 				[...e.changedTouches].forEach((touch) => {
 					let currentContainer = fish.parentElement;
 					console.log(currentContainer);
@@ -131,11 +134,28 @@ function setRemoveFromScaleTo(fishesItemContent) {
 	// TRAMITE CLICK SU PULSANTE "RIMUOVI"
 	const scale = document.querySelector(".scale__space");
 	scale.addEventListener('click', (e) => {
+		console.log(e.target);
 		if (e.target.classList.contains('remove')) {
 			const fishOnScale = e.target.parentElement;
 			const fishOnScaleId = fishOnScale.id;
 			fishOnScale.querySelector('.remove').remove();
 			document.querySelector('div[data-id="' + fishOnScaleId +'"]').insertAdjacentElement('beforeend', fishOnScale.cloneNode(true));
+			fishOnScale.remove();
+			updatePrice();
+			updateSize();
+			setTouchListeners();
+		}
+	});
+
+	scale.addEventListener('touchstart', (e) => {
+		console.log(e.target);
+		if (e.target.classList.contains('remove')) {
+			const fishOnScale = e.target.parentElement;
+			const fishOnScaleId = fishOnScale.id;
+			fishOnScale.querySelector('.remove').remove();
+			let cloneFish = fishOnScale.cloneNode(true);
+			document.querySelector('div[data-id="' + fishOnScaleId +'"]').insertAdjacentElement('beforeend', cloneFish);
+			touchendUpdate(cloneFish);
 			fishOnScale.remove();
 			updatePrice();
 			updateSize();

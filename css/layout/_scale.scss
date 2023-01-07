@@ -62,8 +62,8 @@
       content: "\00d7";
       pointer-events: all;
       position: absolute;
-      width: calculate-rem(14px);
-      height: calculate-rem(14px);
+      width: calculate-rem(18px);
+      height: calculate-rem(18px);
       border-radius: 50%;
       background-color: $red;
       top: 0;
@@ -74,8 +74,8 @@
       &:before, 
       &:after {
         position: absolute;
-        top: calculate-rem(7px);
-        left: calculate-rem(7px);
+        top: calculate-rem(9px);
+        left: calculate-rem(9px);
         width: calculate-rem(2px);
         height: calculate-rem(10px);
         background-color: #F0F0F0;
