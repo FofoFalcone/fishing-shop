@@ -53,6 +53,7 @@ function touchendUpdate(draggedFish) {
 	draggedFish.style.position = "";
 	draggedFish.style.top = ``;
 	draggedFish.style.left = ``;
+	draggedFish.style.transform = `translate(0,0)`;
 	draggedFish.style.zIndex = 1;
 	draggedFish.classList.remove("dragging");
 	updatePrice();
@@ -73,6 +74,7 @@ function setTouchListeners() {
 					fish.style.position = "absolute";
 					fish.style.top = `${touch.pageY}px`;
 					fish.style.left = `${touch.pageX}px`;
+					fish.style.transform = `translate(-50%,-50%)`;
 				})
 			});
 			fish.addEventListener("touchmove", (e) => {
@@ -80,6 +82,7 @@ function setTouchListeners() {
 				[...e.changedTouches].forEach((touch) => {
 					fish.style.top = `${touch.pageY}px`;
 					fish.style.left = `${touch.pageX}px`;
+					fish.style.transform = `translate(-50%,-50%)`;
 					fish.style.zIndex = 9;
 				})
 			});
