@@ -24,28 +24,85 @@ function generateFishingShop(dataJson) {
 
 // ASSEGNA FUNZIONI PRINCIPALI DELL'APP
 function generateAppFunctions() {
-	assignDragging();
-	addToScale();
-	removeFromScale();
+	const productsList = document.querySelector('.products');
+	const scale = document.querySelector(".scale__space");
+	const fishesItemContent = document.querySelectorAll(".products__item__content");
+	setDragListeners(productsList);
+	setTouchListeners();
+	setAddTo(scale);
+	setRemoveFromScaleTo(fishesItemContent);
 }
 
 // ASSEGNA FUNZIONE DI DRAGGING AD OGNI PRODOTTO IN LISTA PRODOTTI
-function assignDragging() {
-	const productsList = document.querySelector('.products');
+function setDragListeners(productsList) {
 	productsList.addEventListener('mousedown', (e) => {
 		let fish = e.target.parentElement;
-		fish.addEventListener("dragstart", () => {
-			fish.classList.add("dragging");
-		});
-		fish.addEventListener("dragend", () => {
-			fish.classList.remove("dragging");
-		});
+		if (fish.classList.contains('fish')) {
+			fish.addEventListener("dragstart", () => {
+				fish.classList.add("dragging");
+			});
+			fish.addEventListener("dragend", () => {
+				fish.classList.remove("dragging");
+			});
+		}
+	})
+}
+
+// ASSEGNA FUNZIONI DI TOUCH AD OGNI PRODOTTO IN LISTA PRODOTTI - PER MOBILE
+function touchendUpdate(fish) {
+	fish.classList.remove("dragging");
+	fish.style.position = "";
+	fish.style.top = ``;
+	fish.style.left = ``;
+	fish.style.zIndex = ``;
+	updatePrice();
+	updateSize();
+	addRemoveBtn();
+}
+
+function setTouchListeners() {
+	let fishesList = document.querySelectorAll('.fish img');
+	fishesList.forEach((image) => {
+		let fish = image.parentElement;
+		if(!fish.classList.add('listening')) {
+			fish.classList.add('listening');
+			fish.addEventListener("touchstart", (e) => {
+				[...e.changedTouches].forEach((touch) => {
+					fish.classList.add("dragging");
+					fish.style.position = "absolute";
+					fish.style.top = `${touch.pageY}px`;
+					fish.style.left = `${touch.pageX}px`;
+				})
+			});
+			fish.addEventListener("touchmove", (e) => {
+				[...e.changedTouches].forEach((touch) => {
+					fish.style.top = `${touch.pageY}px`;
+					fish.style.left = `${touch.pageX}px`;
+					fish.style.zIndex = 9;
+				})
+			});
+			fish.addEventListener("touchend", (e) => {
+				[...e.changedTouches].forEach((touch) => {
+					let currentContainer = fish.parentElement;
+					console.log(currentContainer);
+					let draggedFish = document.querySelector('.dragging');
+					fish.style.zIndex = -1;
+					let hoveredElement = document.elementFromPoint(touch.clientX, touch.clientY);
+					if (hoveredElement.classList.contains('scale__space') || hoveredElement.dataset.id == fish.id ) {
+						hoveredElement.appendChild(draggedFish);
+						touchendUpdate(fish);
+					} else {
+						currentContainer.appendChild(draggedFish);
+						touchendUpdate(fish);
+					}
+				})
+			});
+		}
 	})
 }
 
 // AGGIUNGE ALLA BILANCIA I PRODOTTI TRASCINATI
-function addToScale() {
-	const scale = document.querySelector(".scale__space");
+function setAddTo(scale) {
 	scale.addEventListener("dragover", (e) => {
 		e.preventDefault();
 		let draggedFish = document.querySelector(".dragging");
@@ -54,12 +111,17 @@ function addToScale() {
 		updateSize();
 		addRemoveBtn();
 	});
+	// document.addEventListener("touchend", (e) => {
+	// 	console.log(e);
+	// 	[...e.changedTouches].forEach((touch) => {
+	// 		console.log(touch);
+	// 	})
+	// });
 }
 
 // RIMUOVI DALLA BILANCIA
-function removeFromScale() {
+function setRemoveFromScaleTo(fishesItemContent) {
 	// TRAMITE TRASCINAMENTO
-	const fishesItemContent = document.querySelectorAll(".products__item__content");
 	fishesItemContent.forEach((content) => {
 		content.addEventListener("dragover", (e) => {
 			e.preventDefault();
