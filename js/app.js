@@ -133,33 +133,27 @@ function setRemoveFromScaleTo(fishesItemContent) {
 
 	// TRAMITE CLICK SU PULSANTE "RIMUOVI"
 	const scale = document.querySelector(".scale__space");
+
+	function removeProductFromScale(e) {
+		const fishOnScale = e.target.parentElement;
+		const fishOnScaleId = fishOnScale.id;
+		fishOnScale.querySelector('.remove').remove();
+		document.querySelector('div[data-id="' + fishOnScaleId +'"]').insertAdjacentElement('beforeend', fishOnScale.cloneNode(true));
+		fishOnScale.remove();
+		updatePrice();
+		updateSize();
+		setTouchListeners();
+	}
+
 	scale.addEventListener('click', (e) => {
-		console.log(e.target);
 		if (e.target.classList.contains('remove')) {
-			const fishOnScale = e.target.parentElement;
-			const fishOnScaleId = fishOnScale.id;
-			fishOnScale.querySelector('.remove').remove();
-			document.querySelector('div[data-id="' + fishOnScaleId +'"]').insertAdjacentElement('beforeend', fishOnScale.cloneNode(true));
-			fishOnScale.remove();
-			updatePrice();
-			updateSize();
-			setTouchListeners();
+			removeProductFromScale(e);
 		}
 	});
 
 	scale.addEventListener('touchend', (e) => {
-		console.log(e.target);
 		if (e.target.classList.contains('remove')) {
-			const fishOnScale = e.target.parentElement;
-			const fishOnScaleId = fishOnScale.id;
-			fishOnScale.querySelector('.remove').remove();
-			let cloneFish = fishOnScale.cloneNode(true);
-			document.querySelector('div[data-id="' + fishOnScaleId +'"]').insertAdjacentElement('beforeend', cloneFish);
-			touchendUpdate(cloneFish);
-			fishOnScale.remove();
-			updatePrice();
-			updateSize();
-			setTouchListeners();
+			removeProductFromScale(e);
 		}
 	});
 }
