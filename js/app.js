@@ -49,12 +49,12 @@ function setDragListeners(productsList) {
 }
 
 // ASSEGNA FUNZIONI DI TOUCH AD OGNI PRODOTTO IN LISTA PRODOTTI - PER MOBILE
-function touchendUpdate(fish) {
-	fish.classList.remove("dragging");
-	fish.style.position = "";
-	fish.style.top = ``;
-	fish.style.left = ``;
-	fish.style.zIndex = ``;
+function touchendUpdate(draggedFish) {
+	draggedFish.style.position = "";
+	draggedFish.style.top = ``;
+	draggedFish.style.left = ``;
+	draggedFish.style.zIndex = 1;
+	draggedFish.classList.remove("dragging");
 	updatePrice();
 	updateSize();
 	addRemoveBtn();
@@ -86,14 +86,14 @@ function setTouchListeners() {
 					let currentContainer = fish.parentElement;
 					console.log(currentContainer);
 					let draggedFish = document.querySelector('.dragging');
-					fish.style.zIndex = -1;
+					draggedFish.style.zIndex = -1;
 					let hoveredElement = document.elementFromPoint(touch.clientX, touch.clientY);
 					if (hoveredElement.classList.contains('scale__space') || hoveredElement.dataset.id == fish.id ) {
 						hoveredElement.appendChild(draggedFish);
-						touchendUpdate(fish);
+						touchendUpdate(draggedFish);
 					} else {
 						currentContainer.appendChild(draggedFish);
-						touchendUpdate(fish);
+						touchendUpdate(draggedFish);
 					}
 				})
 			});
@@ -111,12 +111,6 @@ function setAddTo(scale) {
 		updateSize();
 		addRemoveBtn();
 	});
-	// document.addEventListener("touchend", (e) => {
-	// 	console.log(e);
-	// 	[...e.changedTouches].forEach((touch) => {
-	// 		console.log(touch);
-	// 	})
-	// });
 }
 
 // RIMUOVI DALLA BILANCIA
@@ -141,10 +135,11 @@ function setRemoveFromScaleTo(fishesItemContent) {
 			const fishOnScale = e.target.parentElement;
 			const fishOnScaleId = fishOnScale.id;
 			fishOnScale.querySelector('.remove').remove();
-			document.querySelector('div[data-id="' + fishOnScaleId +'"]').appendChild(fishOnScale.cloneNode(true));
+			document.querySelector('div[data-id="' + fishOnScaleId +'"]').insertAdjacentElement('beforeend', fishOnScale.cloneNode(true));
 			fishOnScale.remove();
 			updatePrice();
 			updateSize();
+			setTouchListeners();
 		}
 	});
 }
