@@ -144,8 +144,10 @@ function setRemoveFromScaleTo(fishesItemContent) {
 	function removeProductFromScale(e) {
 		const fishOnScale = e.target.parentElement;
 		const fishOnScaleId = fishOnScale.id;
+		const fishCloned = fishOnScale.cloneNode(true);
+		touchendUpdate(fishCloned); 
 		fishOnScale.querySelector('.remove').remove();
-		document.querySelector('div[data-id="' + fishOnScaleId +'"]').insertAdjacentElement('beforeend', fishOnScale.cloneNode(true));
+		document.querySelector('div[data-id="' + fishOnScaleId +'"]').insertAdjacentElement('beforeend', fishCloned);
 		fishOnScale.remove();
 		updatePrice();
 		updateSize();
@@ -158,7 +160,7 @@ function setRemoveFromScaleTo(fishesItemContent) {
 		}
 	});
 
-	scale.addEventListener('touchend', (e) => {
+	scale.addEventListener('touchstart', (e) => {
 		if (e.target.classList.contains('remove')) {
 			removeProductFromScale(e);
 		}
