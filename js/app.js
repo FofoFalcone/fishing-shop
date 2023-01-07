@@ -88,10 +88,11 @@ function setTouchListeners() {
 				[...e.changedTouches].forEach((touch) => {
 					let currentContainer = fish.parentElement;
 					console.log(currentContainer);
-					let draggedFish = document.querySelector('.dragging');
-					draggedFish.style.zIndex = -1;
 					let hoveredElement = document.elementFromPoint(touch.clientX, touch.clientY);
-					console.log(hoveredElement);
+					let draggedFish = document.querySelector('.dragging');
+					if (draggedFish) {
+						draggedFish.style.zIndex = -1;
+					}
 					if (hoveredElement.classList.contains('scale__space') || hoveredElement.dataset.id == fish.id ) {
 						hoveredElement.appendChild(draggedFish);
 						touchendUpdate(draggedFish);
