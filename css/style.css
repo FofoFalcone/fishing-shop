@@ -540,7 +540,7 @@ div, p, span, a {
   height: 100%;
 }
 .scale__space .remove {
-  display: none;
+  display: block;
   cursor: pointer;
   content: "×";
   pointer-events: all;
@@ -551,6 +551,11 @@ div, p, span, a {
   background-color: rgb(197, 64, 57);
   top: 0;
   right: 0.625rem;
+}
+@media only screen and (min-width: 1024px) {
+  .scale__space .remove {
+    display: none;
+  }
 }
 .scale__space .remove:before, .scale__space .remove:after {
   position: absolute;
