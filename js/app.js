@@ -118,7 +118,7 @@ function updateSize() {
 		let productSize = product.dataset.size;
 		totalSize += Number(productSize);
 	})
-	sizeCounter.innerHTML = totalSize;
+	sizeCounter.innerHTML = totalSize + 'Kg';
 }
 
 // GENERA APP E FUNZIONALITA' AL RECUPERO DELLA LISTA DEI PRODOTTI
