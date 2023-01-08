@@ -65,8 +65,8 @@ function setTouchListeners() {
 	let fishesList = document.querySelectorAll('.fish img');
 	fishesList.forEach((image) => {
 		let fish = image.parentElement;
-		if(!fish.classList.add('listening')) {
-			fish.classList.add('listening');
+		if(!fish.classList.add('touch-listening')) {
+			fish.classList.add('touch-listening');
 			fish.addEventListener("touchstart", (e) => {
 				e.preventDefault();
 				[...e.changedTouches].forEach((touch) => {
@@ -98,12 +98,15 @@ function setTouchListeners() {
 					if (hoveredElement.classList.contains('scale__space') || hoveredElement.dataset.id == fish.id ) {
 						hoveredElement.appendChild(fish);
 						touchendUpdate(fish);
+						fish.classList.add('touch-listening');
 					} else if (hoveredElement.tagName == 'IMG' || hoveredElement.classList.contains('fish')) {
 						hoveredElement.closest('.scale__space').insertAdjacentElement("beforeend", fish);
 						touchendUpdate(fish);
+						fish.classList.add('touch-listening');
 					} else {
 						currentContainer.appendChild(fish);
 						touchendUpdate(fish);
+						fish.classList.add('touch-listening');
 					}
 				})
 			});
