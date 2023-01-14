@@ -83,7 +83,6 @@ function setTouchListeners() {
 				[...e.changedTouches].forEach((touch) => {
 					fish.style.top = `${touch.pageY}px`;
 					fish.style.left = `${touch.pageX}px`;
-					fish.style.transform = `translate(-50%,-50%)`;
 					fish.style.zIndex = 9;
 				})
 			});
