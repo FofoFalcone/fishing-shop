@@ -61,12 +61,12 @@ function touchendUpdate(draggedFish) {
 	addRemoveBtn();
 }
 
-// AGGIUNGI EVENTI TOUCH PER MOBILE
+// AGGIUNGI FUNZIONI TOUCH
 function setTouchListeners() {
 	let fishesList = document.querySelectorAll('.fish img');
 	fishesList.forEach((image) => {
 		let fish = image.parentElement;
-		if(!fish.classList.contains('touch-listening')) {
+		if(!fish.classList.add('touch-listening')) {
 			fish.classList.add('touch-listening');
 			fish.addEventListener("touchstart", (e) => {
 				e.preventDefault();
@@ -83,6 +83,7 @@ function setTouchListeners() {
 				[...e.changedTouches].forEach((touch) => {
 					fish.style.top = `${touch.pageY}px`;
 					fish.style.left = `${touch.pageX}px`;
+					fish.style.transform = `translate(-50%,-50%)`;
 					fish.style.zIndex = 9;
 				})
 			});
