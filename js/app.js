@@ -61,11 +61,12 @@ function touchendUpdate(draggedFish) {
 	addRemoveBtn();
 }
 
+// AGGIUNGI EVENTI TOUCH PER MOBILE
 function setTouchListeners() {
 	let fishesList = document.querySelectorAll('.fish img');
 	fishesList.forEach((image) => {
 		let fish = image.parentElement;
-		if(!fish.classList.add('touch-listening')) {
+		if(!fish.classList.contains('touch-listening')) {
 			fish.classList.add('touch-listening');
 			fish.addEventListener("touchstart", (e) => {
 				e.preventDefault();
