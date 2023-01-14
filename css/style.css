@@ -533,6 +533,7 @@ div, p, span, a {
   padding: 1.25rem 0;
 }
 .scale__space {
+  position: relative;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
